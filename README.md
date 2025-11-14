@@ -1,33 +1,30 @@
-# Machine-Learning-Based-Land-Use-Land-Cover-LULC-and-NDVI-Change-Google-Earth-Engine
-Machine Learning-Based Land Use Land Cover (LULC) and NDVI Change Analysis Using Sentinel-2 Imagery for Arambagh Region on Google Earth Engine
-// =====================
-// Define Area of Interest (AOI)
-// =====================
-
-// Polygon created from your 15 coordinates
-var aoi = ee.Geometry.Polygon([
-  [
-    [87.61784545898368, 22.82693150871734],
-    [87.6521777343743, 22.80288039900524],
-    [87.72633544921806, 22.796550453875298],
-    [87.83619873046806, 22.790220214813314],
-    [87.8993701171868, 22.810475945081294],
-    [87.9323291015618, 22.85983666774265],
-    [87.9488085937493, 22.924358259137705],
-    [87.89799682617118, 22.96356226130795],
-    [87.8059863281243, 22.986320661956555],
-    [87.73869506835868, 22.986320661956555],
-    [87.67003051757743, 22.97114882067489],
-    [87.63844482421806, 22.950917049812674],
-    [87.6302050781243, 22.918033969817706],
-    [87.61235229492118, 22.875020978301883],
-    [87.61784545898368, 22.82693150871734] // close the polygon
-  ]
-]);
-
-// Center the map and visualize AOI
-Map.centerObject(aoi, 10);
-Map.addLayer(aoi, {color: 'red', fillColor: '00000000'}, 'AOI Boundary');
-
-// Print info to console (optional)
-print('AOI geometry:', aoi);
+NDVI and LULC Change Detection Report
+1. Project Overview
+This report presents Land Use/Land Cover (LULC) classification and NDVI-based vegetation change analysis using Sentinel-2 MSI data processed in Google Earth Engine (GEE).
+2. Study Area
+Location: Arambagh, Hooghly (West Bengal, India)
+Coordinates: approx. 22.88°N, 87.78°E
+Characteristics: agricultural land, river systems, settlements.
+3. Sentinel-2 Dataset
+Bands used:
+- B2 (Blue, 10m)
+- B3 (Green, 10m)
+- B4 (Red, 10m)
+- B8 (NIR, 10m)
+- B11 (SWIR1, 20m)
+- B12 (SWIR2, 20m).
+4. Spectral Indices Used
+NDVI = (B8 - B4) / (B8 + B4)
+NDBI = (B11 - B8) / (B11 + B8)
+MNDWI = (B3 - B11) / (B3 + B11)
+NDSLI = (B4 - B11) / (B4 + B11).
+5. Methodology
+1. Sentinel-2 image filtering and cloud masking.
+2. Median composite creation.
+3. Spectral index calculation.
+4. Random Forest classification using training samples.
+5. NDVI change detection between 2020 and 2024.
+6. NDVI Results (2020 vs 2024)
+Mean NDVI 2020: 0.365
+Mean NDVI 2024: 0.317
+Vegetation area decreased by ~11,538 ha, indicating vegetation decline.
